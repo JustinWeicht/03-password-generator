@@ -24,6 +24,7 @@ function writePassword() {
     if (!passwordLowercase && !passwordUppercase && !passwordNumbers && !passwordSpecial) {
       window.alert("ERROR:\nYou must select one or more character type(s) to include in the password.\n\nRefresh this page to try again.");
     };
+    console.log("passwordLength: " + passwordLength);
 
     //* Generate password from the user's inputs
 
@@ -36,7 +37,7 @@ function writePassword() {
     // based on the user's input, create custom array using the character variables above 
     var selectedCharactersArray = [];
     // if passwordLowercase is true (selected by the user):
-    if (passwordLowercase) {
+    if (passwordLowercase) { 
       // then add(+=) the variable into the selectedCharactersArray:
       selectedCharactersArray += lowercaseCharacters;
     };
@@ -49,14 +50,16 @@ function writePassword() {
     if (passwordSpecial) {
       selectedCharactersArray += specialCharacters;
     };
+    console.log("selectedCharactersArray: " + selectedCharactersArray);
 
     // loop through the custom array created above up to the user's passwordLength input
     var passwordArray = [];
     // increment 'var i' until it reaches the user's desired passwordLength
     for (var i = 0; i < passwordLength; i++) {
       // randomly choose a character from the selectedCharacterArray using Math.floor and .random
-      var randomizedCharacters = selectedCharactersArray[Math.floor(Math.random() * passwordLength)];
+      var randomizedCharacters = selectedCharactersArray[Math.floor(Math.random() * selectedCharactersArray.length)];
       passwordArray.push(randomizedCharacters);
+      console.log("randomizedCharacters: " + randomizedCharacters);
     };  
 
     //  return the passwordArray value in an empty string
